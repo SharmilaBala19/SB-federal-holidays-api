@@ -1,0 +1,30 @@
+{
+  "info": {
+    "_postman_id": "a823e2cc-bc2d-4bfb-bdde-97bb521b4731",
+    "name": "Federal Holidays System API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add Holiday Record",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Labor Day\",\n    \"holidayDate\": \"2026-09-07\",\n    \"countryCode\": \"US\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "http://localhost:8080/api/holidays", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "holidays"] }
+      }
+    },
+    {
+      "name": "List Holidays by Country",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "http://localhost:8080/api/holidays/CA", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "holidays", "CA"] }
+      }
+    }
+  ]
+}

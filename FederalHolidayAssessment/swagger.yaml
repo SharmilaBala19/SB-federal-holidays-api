@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: Federal Holiday Management API
+  version: 1.0.0
+  description: Dynamic RESTful engine to orchestrate federal holidays for CA and US.
+paths:
+  /api/holidays:
+    post:
+      summary: Add a standalone federal holiday record
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Holiday'
+      responses:
+        '201':
+          description: Created Successfully
+  /api/holidays/{countryCode}:
+    get:
+      summary: List all federal holidays parsed by targeted country
+      parameters:
+        - name: countryCode
+          in: path
+          required: true
+          schema:
+            type: string
+            example: US
+      responses:
+        '200':
+          description: OK
+  /api/holidays/upload:
+    post:
+      summary: Bulk ingest holiday data streams via CSV files
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Ingestion Processing Succeeded
+components:
+  schemas:
+    Holiday:
+      type: object
+      required:
+        - name
+        - holidayDate
+        - countryCode
+      properties:
+        name:
+          type: string
+          example: Thanksgiving
+        holidayDate:
+          type: string
+          format: date
+          example: "2026-11-26"
+        countryCode:
+          type: string
+          example: US
