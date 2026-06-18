@@ -42,4 +42,8 @@ public class HolidayController {
     public ResponseEntity<List<Holiday>> uploadFile(@RequestParam("file") MultipartFile file) {
         return new ResponseEntity<>(service.uploadHolidaysCsv(file), HttpStatus.CREATED);
     }
+    @GetMapping
+    public ResponseEntity<List<Holiday>> getAllHolidays() {
+        return ResponseEntity.ok(service.getAll());
+    }
 }
